@@ -1,10 +1,10 @@
 import React, { useState, useRef } from "react";
-import useInput from "./hooks/UseInput";
+import useInput from "../../hooks/UseInput";
 import { v4 as uuidv4 } from "uuid";
 
-import FirstList from "./FirstList";
-import SecondList from "./SecondList";
-import Budget from "./Budget/Budget";
+import IncomesList from "../IncomesList";
+import ExpansesList from "../ExpensesList";
+import Budget from "../Budget";
 
 const Calculator = () => {
   const category = ["", "bills", "clubs", "cars", "website"];
@@ -90,7 +90,7 @@ const Calculator = () => {
   return (
     <div className="calc">
       <h1>Kalkulator Wydatków</h1>
-      <FirstList income={income} handleDeleteIncome={handleDeleteIncome} />
+      <IncomesList income={income} handleDeleteIncome={handleDeleteIncome} />
       <div className="form">
         <div>
           <label>Przychód</label>
@@ -130,7 +130,7 @@ const Calculator = () => {
         </select>
         <button onClick={handleClick}>Dodaj</button>
       </div>
-      <SecondList expense={expense} handleDeleteExpense={handleDeleteExpense} />
+      <ExpansesList expense={expense} handleDeleteExpense={handleDeleteExpense} />
       <Budget ref={budgetRef} sum={sum} />
     </div>
   );

@@ -1,6 +1,6 @@
 import React from "react";
 
-const IncomeItem = ({ income, handleDeleteIncome }) => {
+const IncomesItem = ({ income, handleDeleteIncome }) => {
   const { id, name, amount, category } = income;
 
   return (
@@ -15,4 +15,4 @@ const IncomeItem = ({ income, handleDeleteIncome }) => {
   );
 };
 
-export default IncomeItem;
+export default IncomesItem;

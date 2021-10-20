@@ -1,8 +1,8 @@
 import React from "react";
 
-import ExpensesItem from "./ExpensesItem";
+import ExpensesItem from "../ExpensesItem";
 
-const ExpansesList = ({ expense, handleDeleteExpense }) => {
+const ExpensesList = ({ expense, handleDeleteExpense }) => {
   return (
     <div className="secondList">
       <h2>Wydatki</h2>
@@ -19,4 +19,4 @@ const ExpansesList = ({ expense, handleDeleteExpense }) => {
   );
 };
 
-export default ExpansesList;
+export default ExpensesList;
