@@ -1,39 +1,42 @@
 import React, { useState, useRef } from "react";
-import useInput from "../../hooks/UseInput";
+import useInput from "../hooks/UseInput";
 import { v4 as uuidv4 } from "uuid";
 
+import './Calculator.scss'
+import Header from "../Header";
 import IncomesList from "../IncomesList";
-import ExpansesList from "../ExpensesList";
+import ExpensesList from "../ExpensesList";
 import Budget from "../Budget";
+import Button from '../Button';
 
 const Calculator = () => {
-  const category = ["", "bills", "clubs", "cars", "website"];
+  const category = ["", "Bills", "Work", "Home", "Shopping", "Savings"];
   const [name, handleSetName, resetName] = useInput("");
   const [cost, handleSetCost, resetCost] = useInput("");
   const [option, handleSetOption, resetOption] = useInput("");
-  const [radio1, setRadio1] = useState(false);
-  const [radio2, setRadio2] = useState(false);
+  const [radioIncome, setRadioIncome] = useState(false);
+  const [radioExpense, setRadioExpense] = useState(false);
   const [sum, setSum] = useState(0);
   const [income, setIncome] = useState([]);
   const [expense, setExpenses] = useState([]);
   const budgetRef = useRef();
 
-  const handleRadio1 = () => {
-    setRadio1("incomes");
-    setRadio2(false);
+  const handleRadioIncome = () => {
+    setRadioIncome("incomes");
+    setRadioExpense(false);
   };
 
-  const handleRadio2 = () => {
-    setRadio2("expenses");
-    setRadio1(false);
+  const handleRadioExpense = () => {
+    setRadioExpense("expenses");
+    setRadioIncome(false);
   };
 
   const handleClick = (e) => {
     e.preventDefault();
-    if (radio1 === "incomes") {
+    if (radioIncome === "incomes") {
       const incomeItem = {
         id: uuidv4(),
-        type: radio1,
+        type: radioIncome,
         name: name,
         amount: parseInt(cost, 10),
         category: option
@@ -43,13 +46,13 @@ const Calculator = () => {
       resetName("");
       resetCost("");
       resetOption("");
-      setRadio1(false);
-      setRadio2(false);
+      setRadioIncome(false);
+      setRadioExpense(false);
       handleBudget();
     } else {
       const expenseItem = {
         id: uuidv4(),
-        type: radio2,
+        type: radioExpense,
         name: name,
         amount: parseInt(-cost, 10),
         category: option
@@ -59,8 +62,8 @@ const Calculator = () => {
       resetName("");
       resetCost("");
       resetOption("");
-      setRadio1(false);
-      setRadio2(false);
+      setRadioIncome(false);
+      setRadioExpense(false);
       handleBudget();
     }
   };
@@ -80,7 +83,7 @@ const Calculator = () => {
   };
 
   const handleBudget = () => {
-    if (sum >= 0) {
+    if (sum > 0) {
       budgetRef.current.style.color = "#2ecc71";
     } else {
       budgetRef.current.style.color = "#e74c3c";
@@ -88,51 +91,58 @@ const Calculator = () => {
   };
 
   return (
-    <div className="calc">
-      <h1>Kalkulator Wydatków</h1>
-      <IncomesList income={income} handleDeleteIncome={handleDeleteIncome} />
-      <div className="form">
+    <React.Fragment>
+     <Header/>
+      <div className="calculatorContainer">
         <div>
-          <label>Przychód</label>
+          <label className="radioLabel">Income</label>
           <input
             type="radio"
-            value={radio1}
-            checked={radio1}
-            onChange={handleRadio1}
+            value={radioIncome}
+            checked={radioIncome}
+            onChange={handleRadioIncome}
           />
 
-          <label> Wydatek</label>
+          <label className="radioLabel"> Expense</label>
           <input
             type="radio"
-            value={radio2}
-            checked={radio2}
-            onChange={handleRadio2}
+            value={radioExpense}
+            checked={radioExpense}
+            onChange={handleRadioExpense}
           />
         </div>
         <input
+        className="budgetInput"
           value={name}
           onChange={handleSetName}
           type="text"
-          placeholder="Nazwa"
+          placeholder="Name"
         />
         <input
+        className="budgetInput"
           value={cost}
           onChange={handleSetCost}
           type="number"
-          placeholder="Kwota"
+          placeholder="Cost"
         />
-        <select name="category" value={option} onChange={handleSetOption}>
+        <select className="categoryList" name="category" value={option} onChange={handleSetOption}>
           {category.map((category, i) => (
             <option key={i} value={category}>
               {category}
             </option>
           ))}
         </select>
-        <button onClick={handleClick}>Dodaj</button>
+        <Button handleClick={handleClick}>Add item</Button>
+        
       </div>
-      <ExpansesList expense={expense} handleDeleteExpense={handleDeleteExpense} />
+
       <Budget ref={budgetRef} sum={sum} />
-    </div>
+
+      <div className="listsContainer">
+      <IncomesList income={income} handleDeleteIncome={handleDeleteIncome} />
+      <ExpensesList expense={expense} handleDeleteExpense={handleDeleteExpense} />
+      </div>
+    </React.Fragment>
   );
 };
 

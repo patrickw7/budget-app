@@ -1,50 +1,9 @@
 .App {
-  font-family: sans-serif;
+  font-family: Roboto, sans-serif;
   text-align: center;
+  background-color: #EFEFEF
 }
 
-h1 {
-  width: 100%;
-}
-.calc {
-  display: flex;
-  flex-wrap: wrap;
-}
-
-.firstList {
-  width: 50%;
-  height: 80vh;
-  border: 1px solid black;
-}
-
-.secondList {
-  width: 50%;
-  height: 80vh;
-  border: 1px solid black;
-}
-
-.form {
-  width: 45%;
-  height: 30vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  border: 1px solid black;
-}
-
-.card {
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  align-items: flex-start;
-  border: 2px solid green;
-}
-
-h3 {
-  font-size: 20px;
-  margin: 0;
-}
-
-p {
-  margin: 0;
+html {
+  background-color: #EFEFEF
 }

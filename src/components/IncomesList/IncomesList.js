@@ -1,11 +1,13 @@
 import React from "react";
 
+import './IncomesList.scss'
 import IncomesItem from "../IncomesItem";
 
 const IncomesList = ({ income, handleDeleteIncome }) => {
   return (
-    <div className="firstList">
-      <h2>Przychody</h2>
+    <div className="incomesList">
+      <h2>Incomes</h2>
+      <div className="incomesContainer">
       {income.map((item, i) => {
         return (
           <IncomesItem
@@ -15,6 +17,7 @@ const IncomesList = ({ income, handleDeleteIncome }) => {
           />
         );
       })}
+      </div>
     </div>
   );
 };
