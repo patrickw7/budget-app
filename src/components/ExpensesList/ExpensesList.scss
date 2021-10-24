@@ -1,15 +1,2 @@
-.expensesList {
-    height: 100%;
-    min-height: 50vh;
-    width: 40%;
-    background-color: #fff;
-    margin: 20px;
-    border-radius: 5px;
-
-
-   & h2 {
-    font-family: 'Rammetto One', cursive;
-       width: 100%;
-    text-align: center;
-    }
-}
+@use '../styles/mixins.scss' as *;
+@use '../IncomesList/IncomesList.scss';

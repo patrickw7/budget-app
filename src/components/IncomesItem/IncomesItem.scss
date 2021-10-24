@@ -1,39 +1,36 @@
-.incomeItem {
-    display: flex;
-    align-items: center;
-    justify-content: flex-start;
-    border: 1px solid #EFEFEF;
-    min-width: 75%;
-    margin: 15px;
-    border-radius: 5px;
+@use '../styles/mixins.scss' as *;
+@use '../styles/variables.scss' as *;
 
-    h3::first-letter {
-       text-transform: uppercase;
-    }
-    h3 {
-        margin: 15px;
-    }
+.incomesItem,
+.expenseItem {
+  @include item;
 
-    & span:first-of-type {
-        font-weight: bold;
-        color: green;
-        margin: 15px;
-    }
-    & span:last-of-type {
-        font-style: italic;
-        margin: 15px;
+  h3::first-letter {
+    text-transform: uppercase;
+  }
+  h3 {
+    width: 30%;
+    margin: 10px;
+    word-break: break-all;
+  }
 
-    }
+  span:first-of-type {
+    width: 15%;
+    font-weight: bold;
+    color: $mainGreen;
+    margin: 10px;
+  }
+  span:last-of-type {
+    width: 15%;
+    font-style: italic;
+    margin: 12px;
+  }
+  span:last-of-type::first-line {
+    font-weight: bold;
+    font-style: normal;
+  }
 
-    button {
-        width: 5em;
-        height: 2.5em;
-        cursor: pointer;
-        border: none;
-        border-radius: 5px;
-        text-align: center;
-        color: #fff;
-        background-color: #e74c3c;
-        margin-right: 10px;
-    }
+  button {
+    @include dangerBtn;
+  }
 }

@@ -1,39 +1,10 @@
+@use '../styles/mixins.scss' as *;
+@use '../IncomesItem/IncomesItem.scss';
+@use '../styles/variables.scss' as *;
+
 .expenseItem {
-    display: flex;
-    align-items: center;
-    justify-content: flex-start;
-    border: 1px solid #EFEFEF;
-    min-width: 20em;
-    margin: 15px;
-    border-radius: 5px;
 
-    h3::first-letter {
-       text-transform: uppercase;
-    }
-    h3 {
-        margin: 15px;
-    }
-
-    & span:first-of-type {
-        font-weight: bold;
-        color: #e74c3c;
-        margin: 15px;
-    }
-    & span:last-of-type {
-        font-style: italic;
-        margin: 15px;
-
-    }
-
-    button {
-        width: 5em;
-        height: 2.5em;
-        cursor: pointer;
-        border: none;
-        border-radius: 5px;
-        text-align: center;
-        color: #fff;
-        background-color: #e74c3c;
-        margin-right: 10px;
+    span:first-of-type {
+      color: $mainRed;
     }
 }

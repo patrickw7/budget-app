@@ -93,7 +93,7 @@ const Calculator = () => {
   return (
     <React.Fragment>
      <Header/>
-      <div className="calculatorContainer">
+      <div>
         <div>
           <label className="radioLabel">Income</label>
           <input

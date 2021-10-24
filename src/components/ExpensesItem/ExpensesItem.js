@@ -10,7 +10,7 @@ const ExpensesItem = ({ expense, handleDeleteExpense }) => {
       <div className="expenseItem" key={id}>
         <h3>{name}</h3>
         <span>{amount}$</span>
-        <span>category: {category}</span>
+        <span>Category: {category}</span>
         <button onClick={() => handleDeleteExpense(id)}>delete</button>
       </div>
     </React.Fragment>

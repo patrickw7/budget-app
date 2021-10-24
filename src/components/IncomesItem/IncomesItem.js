@@ -7,12 +7,11 @@ const IncomesItem = ({ income, handleDeleteIncome }) => {
 
   return (
     <React.Fragment>
-      <div className="incomeItem" key={id}>
+      <div className="incomesItem" key={id}>
         <h3>{name}</h3>
         <span>{amount}$</span>
-        <span>category: {category}</span>
-        <button onClick={() => handleDeleteIncome(id)}>delete</button>
-      </div>
+        <span>Category: {category}</span>
+        <button onClick={() => handleDeleteIncome(id)}>delete</button></div>
     </React.Fragment>
   );
 };

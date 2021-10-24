@@ -7,6 +7,7 @@ const ExpensesList = ({ expense, handleDeleteExpense }) => {
   return (
     <div className="expensesList">
       <h2>Expenses</h2>
+      <div className="expensesContainer">
       {expense.map((item, i) => {
         return (
           <ExpensesItem
@@ -16,6 +17,7 @@ const ExpensesList = ({ expense, handleDeleteExpense }) => {
           />
         );
       })}
+      </div>
     </div>
   );
 };
