@@ -3,8 +3,7 @@
 @use '../styles/variables.scss' as *;
 
 .expenseItem {
-
-    span:first-of-type {
-      color: $mainRed;
-    }
+  span:first-of-type {
+    color: $mainRed;
+  }
 }

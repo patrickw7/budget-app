@@ -1,13 +1,13 @@
 @use '../styles/variables.scss' as *;
 
 .confirmBtn {
-    cursor: pointer;
-    margin: 10px;
-    padding: 5px 15px;
-    background-color: $confirmBtnColor;
-    color: $themeSecondColor;
-    border: none;
-    border-radius: 5px;
-    line-height: 1.75;
-    font-weight: 500;
+  cursor: pointer;
+  margin: 10px;
+  padding: 5px 15px;
+  background-color: $confirmBtnColor;
+  color: $themeSecondColor;
+  border: none;
+  border-radius: 5px;
+  line-height: 1.75;
+  font-weight: 500;
 }

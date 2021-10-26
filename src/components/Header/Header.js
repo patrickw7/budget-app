@@ -1,13 +1,13 @@
-import React from "react";
+import React from 'react';
 
 import './Header.scss';
 
 const Header = () => {
-return(
+  return (
     <React.Fragment>
-    <h1>Budget Calculator</h1>
+      <h1>Budget Calculator</h1>
     </React.Fragment>
-)
+  );
 };
 
 export default Header;
