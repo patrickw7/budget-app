@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 import './IncomesList.scss';
 import IncomesItem from '../IncomesItem';
@@ -11,7 +12,7 @@ const IncomesList = ({ income, handleDeleteIncome }) => {
         {income.map((item, i) => {
           return (
             <IncomesItem
-              key={i}
+              key={`inc-${i}`}
               income={item}
               handleDeleteIncome={handleDeleteIncome}
             />
@@ -20,6 +21,11 @@ const IncomesList = ({ income, handleDeleteIncome }) => {
       </div>
     </div>
   );
+};
+
+IncomesList.propTypes = {
+  income: PropTypes.array,
+  handleDeleteIncome: PropTypes.func
 };
 
 export default IncomesList;

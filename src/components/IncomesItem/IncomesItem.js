@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 import './IncomesItem.scss';
 
@@ -15,6 +16,11 @@ const IncomesItem = ({ income, handleDeleteIncome }) => {
       </div>
     </React.Fragment>
   );
+};
+
+IncomesItem.propTypes = {
+  income: PropTypes.object,
+  handleDeleteIncome: PropTypes.func
 };
 
 export default IncomesItem;

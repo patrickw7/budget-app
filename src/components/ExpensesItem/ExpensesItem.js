@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 import './ExpenseItem.scss';
 
@@ -15,6 +16,11 @@ const ExpensesItem = ({ expense, handleDeleteExpense }) => {
       </div>
     </React.Fragment>
   );
+};
+
+ExpensesItem.propTypes = {
+  expense: PropTypes.object,
+  handleDeleteExpense: PropTypes.func
 };
 
 export default ExpensesItem;

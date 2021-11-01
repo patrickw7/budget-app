@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 import './Button.scss';
 
@@ -8,6 +9,11 @@ const Button = ({ handleClick, children }) => {
       {children}
     </button>
   );
+};
+
+Button.propTypes = {
+handleClick: PropTypes.func,
+children: PropTypes.string
 };
 
 export default Button;
