@@ -3,16 +3,15 @@ import PropTypes from 'prop-types';
 
 import './Button.scss';
 
-const Button = ({ handleClick, children }) => {
+const Button = ({ children, type }) => {
   return (
-    <button onClick={handleClick} className='confirmBtn'>
+    <button type={type} className='confirmBtn'>
       {children}
     </button>
   );
 };
 
 Button.propTypes = {
-handleClick: PropTypes.func,
 children: PropTypes.string
 };
 

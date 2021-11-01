@@ -5,6 +5,7 @@ import './ExpenseItem.scss';
 
 const ExpensesItem = ({ expense, handleDeleteExpense }) => {
   const { id, name, amount, category } = expense;
+  const handleDeleteItem = () => handleDeleteExpense(id);
 
   return (
     <React.Fragment>
@@ -12,7 +13,7 @@ const ExpensesItem = ({ expense, handleDeleteExpense }) => {
         <h3>{name}</h3>
         <span>{amount}$</span>
         <span>Category: {category}</span>
-        <button onClick={() => handleDeleteExpense(id)}>Delete</button>
+        <button onClick={handleDeleteItem}>Delete</button>
       </div>
     </React.Fragment>
   );

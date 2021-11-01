@@ -1,13 +1,18 @@
 import React from 'react';
+import propTypes from 'prop-types';
 
 import './Header.scss';
 
-const Header = () => {
+const Header = ({children}) => {
   return (
-    <React.Fragment>
-      <h1>Budget Calculator</h1>
-    </React.Fragment>
+    <div>
+      <h1>{children}</h1>
+    </div>
   );
+};
+
+Header.propTypes = {
+  children: propTypes.string
 };
 
 export default Header;

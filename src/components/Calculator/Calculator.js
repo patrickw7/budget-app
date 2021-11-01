@@ -1,119 +1,66 @@
 import React, { useState, useRef, useEffect } from 'react';
-import useInput from '../hooks/UseInput';
 import { v4 as uuidv4 } from 'uuid';
+import { useForm } from 'react-hook-form';
 
 import './Calculator.scss';
-import Header from '../Header';
 import IncomesList from '../IncomesList';
 import ExpensesList from '../ExpensesList';
 import Budget from '../Budget';
 import Button from '../Button';
 
 const Calculator = () => {
-  const category = ['', 'Bills', 'Work', 'Home', 'Shopping', 'Savings'];
-  const [name, handleSetName, resetName] = useInput('');
-  const [cost, handleSetCost, resetCost] = useInput('');
-  const [option, handleSetOption, resetOption] = useInput('');
-  const [radioIncome, setRadioIncome] = useState(false);
-  const [radioExpense, setRadioExpense] = useState(false);
   const [sumOfBudget, setSumOfBudget] = useState(0);
   const [income, setIncome] = useState([]);
   const [expense, setExpenses] = useState([]);
   const budgetRef = useRef();
-  const [radioWarning, setRadioWarning] = useState(false);
-  const categoryWarningRef = useRef();
-  const costWarningRef = useRef();
-  const nameWarningRef = useRef();
-
-  const inputValidation = (addItem) => {
-    if (name === '') {
-      nameWarningRef.current.style.border = '2px solid red';
-    } else {
-      nameWarningRef.current.style.border = 'none';
-    }
-    if ((radioIncome && radioExpense) === false) {
-      setRadioWarning(true);
-    }
-    if (cost <= 0) {
-      costWarningRef.current.style.border = '2px solid red';
-    } else {
-      costWarningRef.current.style.border = 'none';
-    }
-    if (option === '') {
-      categoryWarningRef.current.style.border = '2px solid red';
-    } else {
-      categoryWarningRef.current.style.border = 'none';
-    }
-    if (
-      name !== '' &&
-      (radioIncome || radioExpense) !== false &&
-      cost > 0 &&
-      option !== ''
-    ) {
-      setRadioWarning(false);
-      addItem();
-    }
+  const {
+    register,
+    handleSubmit,
+    reset,
+    formState: { errors },
+  } = useForm();
+  const category = ['', 'Bills', 'Work', 'Home', 'Shopping', 'Savings'];
+  const budgetStateColor = {
+    plus: '#038003',
+    minus: '#e74c3c'
   };
 
-  const handleRadioIncome = () => {
-    setRadioIncome('incomes');
-    setRadioExpense(false);
-  };
-
-  const handleRadioExpense = () => {
-    setRadioExpense('expenses');
-    setRadioIncome(false);
-  };
-
-  const handleBudgetValueColor = () => {
-    if (sumOfBudget >= 0) {
-      budgetRef.current.style.color = '#038003';
-    } else {
-      budgetRef.current.style.color = '#e74c3c';
-    }
-  };
-
-  const handleResetInputs = () => {
-    resetName('');
-    resetCost('');
-    resetOption('');
-    setRadioIncome(false);
-    setRadioExpense(false);
-  };
-
-  const addIncomeItem = () => {
+  const addIncomeItem = (data) => {
+    const { budgetItemType, name, amount, category } = data;
+    const itemID = uuidv4();
     const incomeItem = {
-      id: uuidv4(),
-      type: radioIncome,
+      id: itemID,
+      type: budgetItemType,
       name: name,
-      amount: parseInt(cost, 10),
-      category: option,
+      amount: parseInt(amount, 10),
+      category: category,
     };
     setSumOfBudget(sumOfBudget + incomeItem.amount);
     setIncome([...income, incomeItem]);
-    handleResetInputs();
   };
 
-  const addExpenseItem = () => {
+  const addExpenseItem = (data) => {
+    const { budgetItemType, name, amount, category } = data;
+    const itemID = uuidv4();
     const expenseItem = {
-      id: uuidv4(),
-      type: radioExpense,
+      id: itemID,
+      type: budgetItemType,
       name: name,
-      amount: parseInt(-cost, 10),
-      category: option,
+      amount: parseInt(-amount, 10),
+      category: category,
     };
     setSumOfBudget(sumOfBudget + expenseItem.amount);
     setExpenses([...expense, expenseItem]);
-    handleResetInputs();
   };
 
-  const handleAddItem = (e) => {
-    e.preventDefault();
-    if (radioIncome === 'incomes') {
-      inputValidation(addIncomeItem);
+  const handleAddNewItem = (data) => {
+    const itemType = data.budgetItemType;
+    if (itemType === 'income') {
+      addIncomeItem(data);
     } else {
-      inputValidation(addExpenseItem);
+      addExpenseItem(data);
     }
+    reset();
   };
 
   const handleDeleteIncome = (id) => {
@@ -130,71 +77,85 @@ const Calculator = () => {
     setSumOfBudget(sumOfBudget - newSum.amount);
   };
 
+  const handleBudgetValueColor = () => {
+    if (sumOfBudget >= 0) {
+      budgetRef.current.style.color = budgetStateColor.plus;
+    } else {
+      budgetRef.current.style.color = budgetStateColor.minus;
+    }
+  };
+
   useEffect(() => {
     handleBudgetValueColor();
   });
 
   return (
-    <React.Fragment>
-      <Header />
+    <div>
+      <form onSubmit={handleSubmit(handleAddNewItem)}>
       <div>
-        <div>
-          <label className='radioLabel'>
-            <input
-              type='radio'
-              value={radioIncome}
-              checked={radioIncome}
-              onChange={handleRadioIncome}
-            />
-            Income
-          </label>
-          <label className='radioLabel'>
-            <input
-              type='radio'
-              value={radioExpense}
-              checked={radioExpense}
-              onChange={handleRadioExpense}
-            />
-            Expense
-          </label>
-          {radioWarning === true ? (
-            <p className='warning'>This field is required</p>
-          ) : null}
-        </div>
-        <div className='inputsContainer'>
+        <label className='radioLabel'>
           <input
-            className='budgetInput'
-            value={name}
-            onChange={handleSetName}
-            type='text'
-            placeholder='Name'
-            ref={nameWarningRef}
+            type='radio'
+            value='income'
+            {...register('budgetItemType', { required: true })}
           />
+          Income
+        </label>
+        <label className='radioLabel'>
           <input
-            className='budgetInput'
-            value={cost}
-            onChange={handleSetCost}
-            type='number'
-            placeholder='Cost'
-            ref={costWarningRef}
+            type='radio'
+            value='expense'
+            {...register('budgetItemType', { required: true })}
           />
-          <select
-            className='categoryList'
-            name='category'
-            value={option}
-            onChange={handleSetOption}
-            onBlur={handleSetOption}
-            ref={categoryWarningRef}
-          >
-            {category.map((category, i) => (
-              <option key={i} value={category}>
-                {category}
-              </option>
-            ))}
-          </select>
-          <Button handleClick={handleAddItem}>Add item</Button>
+          Expense
+        </label>
+        {errors.budgetItemType && (
+          <p className='warning'>Please choose type of item</p>
+        )}
         </div>
-      </div>
+        <input
+          className='budgetInput'
+          type='text'
+          placeholder='Name'
+          {...register('name', {
+            required: true,
+            maxLength: 32
+          })}
+        />
+        {errors?.name?.type === 'required' && (
+          <p className='warning'>This field is required</p>
+        )}
+        {errors?.name?.type === 'maxLength' && (
+          <p className='warning'>Name cannot exceed 32 characters</p>
+        )}
+        <input
+          className='budgetInput'
+          type='number'
+          placeholder='Amount'
+          {...register('amount', { required: true, min: 1 })}
+        />
+        {errors.amount && (
+          <p className='warning'>
+            The value of the field needs to be higher than 0
+          </p>
+        )}
+        <select
+          className='categoryList'
+          name='category'
+          {...register('category', { required: true })}
+        >
+          {category.map((category, i) => (
+            <option key={`cat-${i}`} value={category}>
+              {category}
+            </option>
+          ))}
+        </select>
+        {errors.category && (
+          <p className='warning'>Choose category from the list!</p>
+        )}
+        <Button type='submit'>Add item</Button>
+      </form>
+
       <Budget ref={budgetRef} sumOfBudget={sumOfBudget} />
       <div className='listsContainer'>
         <IncomesList income={income} handleDeleteIncome={handleDeleteIncome} />
@@ -203,7 +164,7 @@ const Calculator = () => {
           handleDeleteExpense={handleDeleteExpense}
         />
       </div>
-    </React.Fragment>
+    </div>
   );
 };
 

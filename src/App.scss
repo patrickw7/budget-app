@@ -1,0 +1,11 @@
+@use './components/styles/variables.scss' as *;
+
+.App {
+  font-family: Roboto, sans-serif;
+  text-align: center;
+  background-color: $themeFirstColor;
+}
+
+html {
+  background-color: $themeFirstColor;
+}
