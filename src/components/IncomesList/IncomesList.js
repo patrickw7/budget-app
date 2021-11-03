@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import './IncomesList.scss';
 import IncomesItem from '../IncomesItem';
 
-const IncomesList = ({ income, handleDeleteIncome }) => {
+const IncomesList = ({ income, handleDeleteIncomeItem }) => {
   return (
     <div className='incomesList'>
       <h2>Incomes</h2>
@@ -14,7 +14,7 @@ const IncomesList = ({ income, handleDeleteIncome }) => {
             <IncomesItem
               key={`inc-${i}`}
               income={item}
-              handleDeleteIncome={handleDeleteIncome}
+              handleDeleteIncomeItem={handleDeleteIncomeItem}
             />
           );
         })}
@@ -25,7 +25,7 @@ const IncomesList = ({ income, handleDeleteIncome }) => {
 
 IncomesList.propTypes = {
   income: PropTypes.array,
-  handleDeleteIncome: PropTypes.func
+  handleDeleteIncome: PropTypes.func,
 };
 
 export default IncomesList;

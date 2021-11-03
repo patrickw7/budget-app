@@ -3,9 +3,9 @@ import PropTypes from 'prop-types';
 
 import './ExpenseItem.scss';
 
-const ExpensesItem = ({ expense, handleDeleteExpense }) => {
+const ExpensesItem = ({ expense, handleDeleteExpenseItem }) => {
   const { id, name, amount, category } = expense;
-  const handleDeleteItem = () => handleDeleteExpense(id);
+  const handleDeleteItem = () => handleDeleteExpenseItem(id);
 
   return (
     <React.Fragment>
@@ -21,7 +21,7 @@ const ExpensesItem = ({ expense, handleDeleteExpense }) => {
 
 ExpensesItem.propTypes = {
   expense: PropTypes.object,
-  handleDeleteExpense: PropTypes.func
+  handleDeleteExpense: PropTypes.func,
 };
 
 export default ExpensesItem;
