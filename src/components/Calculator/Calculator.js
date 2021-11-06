@@ -1,10 +1,10 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { v4 as uuidv4 } from 'uuid';
 import { useForm } from 'react-hook-form';
 
 import './Calculator.scss';
-import { incomesListArray } from '../../data';
-import { expensesListArray } from '../../data';
+import { incomesListArray } from '../../mockedData/incomesListArray';
+import { expensesListArray } from '../../mockedData/expensesListArray';
+import { addNewItem, category, findAmountOfDeletingItem, findItemToDelete, handleBudgetValueColor, initialBudgetValue } from '../../utils';
 import IncomesList from '../IncomesList';
 import ExpensesList from '../ExpensesList';
 import Budget from '../Budget';
@@ -13,6 +13,7 @@ import Button from '../Button';
 const Calculator = () => {
   const [income, setIncome] = useState(incomesListArray);
   const [expense, setExpenses] = useState(expensesListArray);
+  const [sumOfBudget, setSumOfBudget] = useState(initialBudgetValue(income,expense));
   const budgetRef = useRef();
   const {
     register,
@@ -20,93 +21,41 @@ const Calculator = () => {
     reset,
     formState: { errors },
   } = useForm();
-  const category = ['', 'Bills', 'Work', 'Food', 'Hobby', 'Holiday', 'Other'];
-  const budgetStateColor = {
-    plus: '#038003',
-    minus: '#e74c3c',
-    neutral: '#505050',
-  };
-
-  const initialBudgetValue = () => {
-    const incomesAmount = income.reduce(
-      (incomeValue, { amount }) => incomeValue + amount,
-      0
-    );
-    const expensesAmount = expense.reduce(
-      (expenseValue, { amount }) => expenseValue + amount,
-      0
-    );
-    return incomesAmount + expensesAmount;
-  };
-  const [sumOfBudget, setSumOfBudget] = useState(initialBudgetValue);
-
-  const addIncomeItem = (data) => {
-    const { budgetItemType, name, amount, category } = data;
-    const itemID = uuidv4();
-    const amountValue = parseInt(amount, 10);
-    const incomeItem = {
-      id: itemID,
-      type: budgetItemType,
-      name: name,
-      amount: amountValue,
-      category: category,
-    };
-    setSumOfBudget(sumOfBudget + incomeItem.amount);
-    setIncome([...income, incomeItem]);
-  };
-
-  const addExpenseItem = (data) => {
-    const { budgetItemType, name, amount, category } = data;
-    const itemID = uuidv4();
-    const amountValue = parseInt(-amount, 10);
-    const expenseItem = {
-      id: itemID,
-      type: budgetItemType,
-      name: name,
-      amount: amountValue,
-      category: category,
-    };
-    setSumOfBudget(sumOfBudget + expenseItem.amount);
-    setExpenses([...expense, expenseItem]);
-  };
 
   const handleAddNewItem = (data) => {
     const itemType = data.budgetItemType;
+    const amount = parseInt(data.amount,10);
     if (itemType === 'income') {
-      addIncomeItem(data);
-    } else {
-      addExpenseItem(data);
+      const newIncome = addNewItem(data);
+      setIncome([...income, newIncome]);
+      setSumOfBudget(sumOfBudget + amount);
+      return reset();
     }
-    reset();
+    const newExpense = addNewItem(data);
+      setExpenses([...expense, newExpense]);
+      setSumOfBudget(sumOfBudget + (-amount));
+    return reset();
   };
 
-  const handleDeleteIncomeItem = (id) => {
-    const newIncomeArr = income.filter((item) => item.id !== id);
-    const newSum = income.find((item) => item.id === id);
-    setIncome(newIncomeArr);
-    setSumOfBudget(sumOfBudget - newSum.amount);
-  };
+  const handleDeleteListItem = (id, typeOfItem) => {
+if (typeOfItem === 'income') {
+  const newIncomeList = findItemToDelete(id,income);
+  const amountOfDeletedIncome = findAmountOfDeletingItem(id, income);
+setIncome(newIncomeList);
+return setSumOfBudget(sumOfBudget - amountOfDeletedIncome);
+}
+const newExpenseList = findItemToDelete(id,expense);
+const amountOfDeletedExpense = findAmountOfDeletingItem(id, expense);
+  setExpenses(newExpenseList);
+  setSumOfBudget(sumOfBudget - amountOfDeletedExpense);
+  return;
 
-  const handleDeleteExpenseItem = (id) => {
-    const newExpenseArr = expense.filter((item) => item.id !== id);
-    const newSum = expense.find((item) => item.id === id);
-    setExpenses(newExpenseArr);
-    setSumOfBudget(sumOfBudget - newSum.amount);
-  };
-
-  const handleBudgetValueColor = () => {
-    if (sumOfBudget > 0) {
-      budgetRef.current.style.color = budgetStateColor.plus;
-    } else if (sumOfBudget < 0) {
-      budgetRef.current.style.color = budgetStateColor.minus;
-    } else {
-      budgetRef.current.style.color = budgetStateColor.neutral;
-    }
   };
 
   useEffect(() => {
-    handleBudgetValueColor();
+    handleBudgetValueColor(sumOfBudget, budgetRef);
   });
+
 
   return (
     <div>
@@ -180,11 +129,11 @@ const Calculator = () => {
       <div className='listsContainer'>
         <IncomesList
           income={income}
-          handleDeleteIncomeItem={handleDeleteIncomeItem}
+          handleDeleteListItem={handleDeleteListItem}
         />
         <ExpensesList
           expense={expense}
-          handleDeleteExpenseItem={handleDeleteExpenseItem}
+          handleDeleteListItem={handleDeleteListItem}
         />
       </div>
     </div>

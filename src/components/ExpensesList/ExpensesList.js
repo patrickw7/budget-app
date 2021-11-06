@@ -4,17 +4,17 @@ import PropTypes from 'prop-types';
 import './ExpensesList.scss';
 import ExpensesItem from '../ExpensesItem';
 
-const ExpensesList = ({ expense, handleDeleteExpenseItem }) => {
+const ExpensesList = ({ expense, handleDeleteListItem }) => {
   return (
     <div className='expensesList'>
       <h2>Expenses</h2>
       <div className='expensesContainer'>
-        {expense.map((item, i) => {
+        {expense.map((item) => {
           return (
             <ExpensesItem
-              key={`exp-${i}`}
+              key={item.id}
               expense={item}
-              handleDeleteExpenseItem={handleDeleteExpenseItem}
+              handleDeleteListItem={handleDeleteListItem}
             />
           );
         })}
@@ -25,7 +25,7 @@ const ExpensesList = ({ expense, handleDeleteExpenseItem }) => {
 
 ExpensesList.propTypes = {
   expense: PropTypes.array,
-  handleDeleteExpense: PropTypes.func,
+  handleDeleteListItem: PropTypes.func,
 };
 
 export default ExpensesList;

@@ -4,17 +4,17 @@ import PropTypes from 'prop-types';
 import './IncomesList.scss';
 import IncomesItem from '../IncomesItem';
 
-const IncomesList = ({ income, handleDeleteIncomeItem }) => {
+const IncomesList = ({ income, handleDeleteListItem}) => {
   return (
     <div className='incomesList'>
       <h2>Incomes</h2>
       <div className='incomesContainer'>
-        {income.map((item, i) => {
+        {income.map((item) => {
           return (
             <IncomesItem
-              key={`inc-${i}`}
+              key={item.id}
               income={item}
-              handleDeleteIncomeItem={handleDeleteIncomeItem}
+              handleDeleteListItem={handleDeleteListItem}
             />
           );
         })}
@@ -25,7 +25,7 @@ const IncomesList = ({ income, handleDeleteIncomeItem }) => {
 
 IncomesList.propTypes = {
   income: PropTypes.array,
-  handleDeleteIncome: PropTypes.func,
+  handleDeleteListItem: PropTypes.func,
 };
 
 export default IncomesList;
