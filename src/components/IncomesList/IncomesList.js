@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import './IncomesList.scss';
 import IncomesItem from '../IncomesItem';
 
-const IncomesList = ({ income, handleDeleteListItem}) => {
+const IncomesList = ({ income, handleDeleteListItem }) => {
   return (
     <div className='incomesList'>
       <h2>Incomes</h2>

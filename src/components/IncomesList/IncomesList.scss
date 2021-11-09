@@ -4,11 +4,11 @@
 .expensesList {
   @include list;
 
-  h2 {
+  & h2 {
     @include headerList;
   }
 
-  .incomesContainer,
+  & .incomesContainer,
   .expensesContainer {
     width: 100%;
     display: flex;

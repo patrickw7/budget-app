@@ -5,15 +5,15 @@ form {
   align-items: flex-start;
   justify-content: center;
 
-  div {
+  & div {
     margin: 2px;
   }
 
-  .radioLabel {
+  & .radioLabel {
     font-family: 'Rammetto One', cursive;
   }
 
-  .budgetInput {
+  & .budgetInput {
     padding: 5px;
     border: 0;
     border-radius: 5px;
@@ -21,7 +21,7 @@ form {
     width: 12vw;
   }
 
-  .categoryList {
+  & .categoryList {
     align-self: center;
     padding: 4px;
     border: none;
@@ -29,13 +29,12 @@ form {
     margin: 3px 0;
   }
 
-  .warning {
+  & .warning {
     font-size: 12px;
     font-weight: bold;
     color: $mainRed;
     margin: 0;
   }
-
 }
 
 .listsContainer {

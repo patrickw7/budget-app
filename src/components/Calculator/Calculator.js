@@ -4,16 +4,28 @@ import { useForm } from 'react-hook-form';
 import './Calculator.scss';
 import { incomesListArray } from '../../mockedData/incomesListArray';
 import { expensesListArray } from '../../mockedData/expensesListArray';
-import { addNewItem, category, findAmountOfDeletingItem, findItemToDelete, handleBudgetValueColor, initialBudgetValue } from '../../utils';
+import {
+  addNewItem,
+  category,
+  findAmountOfDeletingItem,
+  findItemToDelete,
+  handleBudgetValueColor,
+  initialBudgetValue,
+  handleSnackBar,
+} from '../../utils';
 import IncomesList from '../IncomesList';
 import ExpensesList from '../ExpensesList';
 import Budget from '../Budget';
 import Button from '../Button';
+import SnackBar from '../SnackBar/SnackBar';
 
 const Calculator = () => {
   const [income, setIncome] = useState(incomesListArray);
   const [expense, setExpenses] = useState(expensesListArray);
-  const [sumOfBudget, setSumOfBudget] = useState(initialBudgetValue(income,expense));
+  const [isOpen, setIsOpen] = useState(false);
+  const [sumOfBudget, setSumOfBudget] = useState(
+    initialBudgetValue(income, expense)
+  );
   const budgetRef = useRef();
   const {
     register,
@@ -24,39 +36,41 @@ const Calculator = () => {
 
   const handleAddNewItem = (data) => {
     const itemType = data.budgetItemType;
-    const amount = parseInt(data.amount,10);
+    const amount = parseInt(data.amount, 10);
     if (itemType === 'income') {
       const newIncome = addNewItem(data);
       setIncome([...income, newIncome]);
       setSumOfBudget(sumOfBudget + amount);
+      handleSnackBar(setIsOpen);
       return reset();
     }
     const newExpense = addNewItem(data);
-      setExpenses([...expense, newExpense]);
-      setSumOfBudget(sumOfBudget + (-amount));
+    setExpenses([...expense, newExpense]);
+    setSumOfBudget(sumOfBudget + -amount);
+    handleSnackBar(setIsOpen);
     return reset();
   };
 
   const handleDeleteListItem = (id, typeOfItem) => {
-if (typeOfItem === 'income') {
-  const newIncomeList = findItemToDelete(id,income);
-  const amountOfDeletedIncome = findAmountOfDeletingItem(id, income);
-setIncome(newIncomeList);
-return setSumOfBudget(sumOfBudget - amountOfDeletedIncome);
-}
-const newExpenseList = findItemToDelete(id,expense);
-const amountOfDeletedExpense = findAmountOfDeletingItem(id, expense);
-  setExpenses(newExpenseList);
-  setSumOfBudget(sumOfBudget - amountOfDeletedExpense);
-  return;
-
+    if (typeOfItem === 'income') {
+      const newIncomeList = findItemToDelete(id, income);
+      const amountOfDeletedIncome = findAmountOfDeletingItem(id, income);
+      setIncome(newIncomeList);
+      return setSumOfBudget(sumOfBudget - amountOfDeletedIncome);
+    }
+    const newExpenseList = findItemToDelete(id, expense);
+    const amountOfDeletedExpense = findAmountOfDeletingItem(id, expense);
+    setExpenses(newExpenseList);
+    setSumOfBudget(sumOfBudget - amountOfDeletedExpense);
+    return;
   };
 
   useEffect(() => {
     handleBudgetValueColor(sumOfBudget, budgetRef);
+    return () => {
+      clearTimeout(handleSnackBar);
+    };
   });
-
-
   return (
     <div>
       <form onSubmit={handleSubmit(handleAddNewItem)}>
@@ -136,8 +150,10 @@ const amountOfDeletedExpense = findAmountOfDeletingItem(id, expense);
           handleDeleteListItem={handleDeleteListItem}
         />
       </div>
+      {isOpen === true ? (
+        <SnackBar isOpen={isOpen}>The item has been added !</SnackBar>
+      ) : null}
     </div>
   );
 };
-
 export default Calculator;

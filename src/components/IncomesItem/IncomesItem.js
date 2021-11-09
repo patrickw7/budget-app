@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 import './IncomesItem.scss';
 
-const IncomesItem = ({ income, handleDeleteListItem}) => {
+const IncomesItem = ({ income, handleDeleteListItem }) => {
   const { id, name, amount, type, category } = income;
   const handleDeleteItem = () => handleDeleteListItem(id, type);
 
@@ -21,7 +21,6 @@ const IncomesItem = ({ income, handleDeleteListItem}) => {
 
 IncomesItem.propTypes = {
   income: PropTypes.object,
-  handleDeleteListItem: PropTypes.func
+  handleDeleteListItem: PropTypes.func,
 };
-
 export default IncomesItem;

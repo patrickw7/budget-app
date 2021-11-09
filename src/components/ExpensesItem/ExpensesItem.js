@@ -5,7 +5,7 @@ import './ExpenseItem.scss';
 
 const ExpensesItem = ({ expense, handleDeleteListItem }) => {
   const { id, name, amount, type, category } = expense;
-  const handleDeleteItem = () => handleDeleteListItem(id,type);
+  const handleDeleteItem = () => handleDeleteListItem(id, type);
 
   return (
     <React.Fragment>
@@ -23,5 +23,4 @@ ExpensesItem.propTypes = {
   expense: PropTypes.object,
   handleDeleteListItem: PropTypes.func,
 };
-
 export default ExpensesItem;

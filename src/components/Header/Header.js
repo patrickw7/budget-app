@@ -3,7 +3,7 @@ import propTypes from 'prop-types';
 
 import './Header.scss';
 
-const Header = ({children}) => {
+const Header = ({ children }) => {
   return (
     <div>
       <h1>{children}</h1>
@@ -12,7 +12,6 @@ const Header = ({children}) => {
 };
 
 Header.propTypes = {
-  children: propTypes.string
+  children: propTypes.string,
 };
-
 export default Header;

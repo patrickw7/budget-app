@@ -14,7 +14,7 @@ const Budget = React.forwardRef((props, budgetRef) => {
 });
 
 Budget.propTypes = {
-sumOfBudget: PropTypes.number
+  sumOfBudget: PropTypes.number,
 };
 
 export default Budget;

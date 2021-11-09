@@ -12,7 +12,6 @@ const Button = ({ children, type }) => {
 };
 
 Button.propTypes = {
-children: PropTypes.string
+  children: PropTypes.string,
 };
-
 export default Button;

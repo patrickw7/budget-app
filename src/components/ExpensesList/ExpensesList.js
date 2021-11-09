@@ -27,5 +27,4 @@ ExpensesList.propTypes = {
   expense: PropTypes.array,
   handleDeleteListItem: PropTypes.func,
 };
-
 export default ExpensesList;
