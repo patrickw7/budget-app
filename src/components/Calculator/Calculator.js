@@ -117,9 +117,9 @@ const Calculator = () => {
             className='budgetInput'
             type='number'
             placeholder='Amount'
-            {...register('amount', { required: true, min: 1 })}
+            {...register('amount', { required: true, min: 1, max: 1000000 })}
           />
-          {errors.amount && <p className='warning'>Put correct value!</p>}
+          {errors.amount && <p className='warning'>Put correct value, no more than 1mln!</p>}
         </div>
         <div>
           <select
