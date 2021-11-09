@@ -1,0 +1,45 @@
+@use '../../styles/variables.scss' as *;
+
+form {
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+
+  & div {
+    margin: 2px;
+  }
+
+  & .radioLabel {
+    font-family: 'Rammetto One', cursive;
+  }
+
+  & .budgetInput {
+    padding: 5px;
+    border: 0;
+    border-radius: 5px;
+    margin: 2px 8px;
+    width: 12vw;
+  }
+
+  & .categoryList {
+    align-self: center;
+    padding: 4px;
+    border: none;
+    border-radius: 5px;
+    margin: 3px 0;
+  }
+
+  & .warning {
+    font-size: 12px;
+    font-weight: bold;
+    color: $mainRed;
+    margin: 0;
+  }
+}
+
+.listsContainer {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  min-height: 50%;
+}

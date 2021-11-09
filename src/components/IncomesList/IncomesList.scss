@@ -1,0 +1,18 @@
+@use '../../styles/mixins.scss' as *;
+
+.incomesList,
+.expensesList {
+  @include list;
+
+  & h2 {
+    @include headerList;
+  }
+
+  & .incomesContainer,
+  .expensesContainer {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+  }
+}

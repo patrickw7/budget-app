@@ -1,0 +1,36 @@
+@use '../../styles/mixins.scss' as *;
+@use '../../styles/variables.scss' as *;
+
+.incomesItem,
+.expenseItem {
+  @include item;
+
+  & h3::first-letter {
+    text-transform: uppercase;
+  }
+  & h3 {
+    width: 30%;
+    margin: 10px;
+    word-break: break-all;
+  }
+
+  & span:first-of-type {
+    width: 15%;
+    font-weight: bold;
+    color: $mainGreen;
+    margin: 10px;
+  }
+  & span:last-of-type {
+    width: 15%;
+    font-style: italic;
+    margin: 12px;
+  }
+  & span:last-of-type::first-line {
+    font-weight: bold;
+    font-style: normal;
+  }
+
+  & button {
+    @include dangerBtn;
+  }
+}
