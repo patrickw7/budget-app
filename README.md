@@ -1,3 +1,11 @@
+See the live version of [Budget App](https://budget-app-react-patrick.netlify.app/).
+
+**Main features**:
+- Calculating Your Monthly Budget.
+&nbsp;
+## 💡 Technologies
+<img alt="reactjs" src="https://img.shields.io/badge/-ReactJS-blue"> <img alt="React Hook-Form" src="https://img.shields.io/badge/React-Hook--Form-yellowgreen"> <img alt="Sass" src="https://img.shields.io/badge/-Sass-pink">
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
