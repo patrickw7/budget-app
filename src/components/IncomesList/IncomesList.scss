@@ -16,3 +16,16 @@
     align-items: center;
   }
 }
+
+@media (max-width:1024px) {
+  .incomesList, .expensesList {
+    width: 70%;
+  }
+}
+
+@media (max-width: 600px) {
+  .incomesList, .expensesList {
+    width: 80%;
+  }
+}
+

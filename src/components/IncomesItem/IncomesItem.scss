@@ -34,3 +34,35 @@
     @include dangerBtn;
   }
 }
+
+@media (max-width:600px) {
+  .incomesItem,
+  .expenseItem {
+    flex-wrap: wrap;
+    & span:last-of-type {
+      width: 25%;
+    }
+    & h3 {
+      width: 20%;
+    }
+   }
+}
+
+@media (max-width:415px) {
+  .incomesItem,
+  .expenseItem {
+    flex-wrap: wrap;
+    flex-direction: column;
+
+  & h3 {
+      width: 80%;
+    }
+
+  & span:first-of-type {
+      width: 80%;
+    }
+  & span:last-of-type {
+      width: 80%;
+    }
+   }
+}
