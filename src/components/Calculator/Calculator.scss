@@ -40,6 +40,30 @@ form {
 .listsContainer {
   display: flex;
   justify-content: center;
+  align-items: center;
   width: 100%;
   min-height: 50%;
+}
+
+@media (max-width: 600px) {
+  form {
+    flex-direction: column;
+    align-items: center;
+
+    .budgetInput {
+      width: 12rem;
+      height: 1.5rem;
+      margin: 2px;
+    }
+  }
+  .listsContainer {
+  flex-direction: column;
+  }
+}
+
+
+@media (max-width: 1024px) {
+  .listsContainer {
+  flex-direction: column;
+  }
 }
