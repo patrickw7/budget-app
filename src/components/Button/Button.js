@@ -14,4 +14,4 @@ const Button = ({ children, type }) => {
 Button.propTypes = {
   children: PropTypes.string,
 };
-export default Button;
+export default React.memo(Button);
