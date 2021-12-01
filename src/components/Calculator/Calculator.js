@@ -70,7 +70,7 @@ const Calculator = () => {
     return () => {
       clearTimeout(handleSnackBar);
     };
-  });
+  },[sumOfBudget]);
   return (
     <div>
       <form onSubmit={handleSubmit(handleAddNewItem)}>
@@ -151,7 +151,7 @@ const Calculator = () => {
         />
       </div>
       {isOpen === true ? (
-        <SnackBar isOpen={isOpen}>The item has been added !</SnackBar>
+        <SnackBar>The item has been added !</SnackBar>
       ) : null}
     </div>
   );

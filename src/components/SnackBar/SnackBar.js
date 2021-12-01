@@ -2,9 +2,9 @@ import React from 'react';
 
 import './SnackBar.scss';
 
-const SnackBar = ({ children, isOpen }) => {
+const SnackBar = ({ children }) => {
   return (
-    <div className='snackBar' isOpen={isOpen}>
+    <div className='snackBar'>
       <p>{children}</p>
     </div>
   );
