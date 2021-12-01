@@ -70,7 +70,7 @@ const Calculator = () => {
     return () => {
       clearTimeout(handleSnackBar);
     };
-  });
+  },[sumOfBudget]);
   return (
     <div>
       <form onSubmit={handleSubmit(handleAddNewItem)}>
