@@ -1,6 +1,7 @@
 const handleSnackBar = (setIsOpen) => {
     const time = 1500;
     setIsOpen(true);
-    setTimeout(() => setIsOpen(false),time);
+   const snackBarTimeOutIndex = setTimeout(() => setIsOpen(false),time);
+   return snackBarTimeOutIndex;
   };
   export default handleSnackBar;

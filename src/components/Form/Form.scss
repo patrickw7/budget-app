@@ -1,0 +1,10 @@
+@use '../../styles/variables.scss' as *;
+
+.validationList {
+  list-style: none;
+
+  .validationError {
+    color: $mainRed;
+    font-weight: 600;
+  }
+}
