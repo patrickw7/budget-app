@@ -8,9 +8,9 @@
   min-height: 70vh;
   width: 35%;
   background-color: $themeSecondColor;
-  margin: 20px;
-  border-radius: 5px;
-  padding: 0 20px 50px;
+  margin: $big-margin;
+  border-radius: $border-size;
+  padding: 0 $large-padding $big-padding;
 }
 
 @mixin item {
@@ -20,8 +20,8 @@
   justify-content: flex-start;
   border: 1px solid $themeFirstColor;
   min-width: 97%;
-  margin: 6px;
-  border-radius: 5px;
+  margin: $small-margin;
+  border-radius: $border-size;
 }
 
 @mixin dangerBtn {
@@ -30,15 +30,15 @@
   height: 2.5em;
   cursor: pointer;
   border: none;
-  border-radius: 5px;
+  border-radius: $border-size;
   text-align: center;
   color: $themeSecondColor;
   background-color: $mainRed;
-  margin: 10px;
+  margin: $medium-margin;
 }
 
 @mixin headerList {
-  font-family: 'Rammetto One', cursive;
+  font-family: $fontHeader;
   width: 100%;
   height: 100%;
   text-align: center;

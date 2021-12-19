@@ -1,5 +1,7 @@
+@use '../../styles/variables.scss' as *;
+
 h1 {
   width: 100%;
-  font-family: 'Rammetto One', cursive;
+  font-family: $fontHeader;
   text-align: center;
 }

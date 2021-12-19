@@ -6,7 +6,7 @@ form {
   justify-content: center;
 
   & div {
-    margin: 2px;
+    margin: $small-margin;
   }
 
   & .radioLabel {
@@ -14,19 +14,19 @@ form {
   }
 
   & .budgetInput {
-    padding: 5px;
+    padding: $small-padding;
     border: 0;
-    border-radius: 5px;
-    margin: 2px 8px;
+    border-radius: $border-size;
+    margin: $small-margin $medium-margin;
     width: 12vw;
   }
 
   & .categoryList {
     align-self: center;
-    padding: 4px;
+    padding: $small-padding;
     border: none;
-    border-radius: 5px;
-    margin: 3px 0;
+    border-radius: $border-size;
+    margin: $small-margin 0;
   }
 
   & .warning {

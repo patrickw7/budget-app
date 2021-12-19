@@ -9,15 +9,13 @@ const IncomesList = ({ income, handleDeleteListItem }) => {
     <div className='incomesList'>
       <h2>Incomes</h2>
       <div className='incomesContainer'>
-        {income.map((item) => {
-          return (
-            <IncomesItem
-              key={item.id}
-              income={item}
-              handleDeleteListItem={handleDeleteListItem}
-            />
-          );
-        })}
+        {income.map((item) =>
+          <IncomesItem
+            key={item.id}
+            income={item}
+            handleDeleteListItem={handleDeleteListItem}
+          />
+        )}
       </div>
     </div>
   );
