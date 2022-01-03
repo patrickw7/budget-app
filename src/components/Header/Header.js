@@ -10,8 +10,8 @@ const Header = ({ children }) => {
     </div>
   );
 };
+export default Header;
 
 Header.propTypes = {
-  children: propTypes.string,
+  children: propTypes.string
 };
-export default Header;

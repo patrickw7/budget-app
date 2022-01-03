@@ -6,11 +6,10 @@ import Header from './components/Header';
 
 function App() {
   return (
-    <div className='App'>
+    <div className="App">
       <Header>Budget Calculator</Header>
       <Calculator />
     </div>
   );
 }
-
 export default App;

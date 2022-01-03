@@ -6,15 +6,15 @@ import './Budget.scss';
 const Budget = React.forwardRef((props, budgetRef) => {
   return (
     <div>
-      <h2 className='budgetText'>
+      <h2 className="budgetText">
         My budget: <span ref={budgetRef}>{props.sumOfBudget}$</span>
       </h2>
     </div>
   );
 });
+export default Budget;
 
 Budget.propTypes = {
   sumOfBudget: PropTypes.number,
+  budgetRef: PropTypes.string
 };
-
-export default Budget;

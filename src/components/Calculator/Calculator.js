@@ -8,7 +8,7 @@ import {
   findItemToDelete,
   handleBudgetValueColor,
   initialBudgetValue,
-  handleSnackBar,
+  handleSnackBar
 } from '../../utils';
 import IncomesList from '../IncomesList';
 import ExpensesList from '../ExpensesList';
@@ -19,9 +19,7 @@ const Calculator = () => {
   const [income, setIncome] = useState(incomesListArray);
   const [expense, setExpenses] = useState(expensesListArray);
   const [isOpen, setIsOpen] = useState(false);
-  const [sumOfBudget, setSumOfBudget] = useState(
-    initialBudgetValue(income, expense)
-  );
+  const [sumOfBudget, setSumOfBudget] = useState(initialBudgetValue(income, expense));
   const budgetRef = useRef();
 
   const handleDeleteListItem = (id, typeOfItem) => {
@@ -43,31 +41,24 @@ const Calculator = () => {
     return () => {
       clearTimeout(handleSnackBar);
     };
-  },[sumOfBudget]);
+  }, [sumOfBudget]);
   return (
     <div>
-   <Form
-   income={income}
-   setIncome={setIncome}
-   expense={expense}
-   setExpenses={setExpenses}
-   setIsOpen={setIsOpen}
-   budgetRef={budgetRef}
-   sumOfBudget={sumOfBudget}
-   setSumOfBudget={setSumOfBudget}
-   />
-      <div className='listsContainer'>
-        <IncomesList
-          income={income}
-          handleDeleteListItem={handleDeleteListItem}
-        />
-        <ExpensesList
-          expense={expense}
-          handleDeleteListItem={handleDeleteListItem}
-        />
+      <Form
+        income={income}
+        setIncome={setIncome}
+        expense={expense}
+        setExpenses={setExpenses}
+        setIsOpen={setIsOpen}
+        budgetRef={budgetRef}
+        sumOfBudget={sumOfBudget}
+        setSumOfBudget={setSumOfBudget}
+      />
+      <div className="listsContainer">
+        <IncomesList income={income} handleDeleteListItem={handleDeleteListItem} />
+        <ExpensesList expense={expense} handleDeleteListItem={handleDeleteListItem} />
       </div>
-      {isOpen &&
-        <SnackBar>The item has been added !</SnackBar>}
+      {isOpen && <SnackBar>The item has been added !</SnackBar>}
     </div>
   );
 };

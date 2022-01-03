@@ -13,5 +13,5 @@ export const validationSchema = yup.object({
     .required('Name field is required!')
     .min(1, 'Amount needs to be more than 0!')
     .max(1000000, 'Amount cannot exceed 1 million!'),
-  category: yup.string().required('Category is required!'),
+  category: yup.string().required('Category is required!')
 });
