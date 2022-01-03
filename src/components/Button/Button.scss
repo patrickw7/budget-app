@@ -2,12 +2,12 @@
 
 .confirmBtn {
   cursor: pointer;
-  margin: 0 $medium-margin;
-  padding: $small-padding $medium-padding;
+  margin: 0 $mediumMargin;
+  padding: $smallPadding $mediumPadding;
   background-color: $confirmBtnColor;
   color: $themeSecondColor;
   border: none;
-  border-radius: $border-size;
+  border-radius: $borderSize;
   line-height: 1.75;
   font-weight: 500;
 }

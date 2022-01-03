@@ -6,7 +6,7 @@ form {
   justify-content: center;
 
   & div {
-    margin: $small-margin;
+    margin: $smallMargin;
   }
 
   & .radioLabel {
@@ -14,19 +14,19 @@ form {
   }
 
   & .budgetInput {
-    padding: $small-padding;
+    padding: $smallPadding;
     border: 0;
-    border-radius: $border-size;
-    margin: $small-margin $medium-margin;
+    border-radius: $borderSize;
+    margin: $smallMargin $mediumMargin;
     width: 12vw;
   }
 
   & .categoryList {
     align-self: center;
-    padding: $small-padding;
+    padding: $smallPadding;
     border: none;
-    border-radius: $border-size;
-    margin: $small-margin 0;
+    border-radius: $borderSize;
+    margin: $smallMargin 0;
   }
 
   & .warning {
@@ -57,13 +57,12 @@ form {
     }
   }
   .listsContainer {
-  flex-direction: column;
+    flex-direction: column;
   }
 }
 
-
 @media (max-width: 1024px) {
   .listsContainer {
-  flex-direction: column;
+    flex-direction: column;
   }
 }
