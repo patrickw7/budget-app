@@ -1,8 +1,8 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import React from "react";
+import PropTypes from "prop-types";
 
-import './ExpensesList.scss';
-import ExpensesItem from '../ExpensesItem';
+import "./ExpensesList.scss";
+import ExpensesItem from "../ExpensesItem";
 
 const ExpensesList = ({ expense, handleDeleteListItem }) => {
   return (

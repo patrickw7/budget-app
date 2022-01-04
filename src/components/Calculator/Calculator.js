@@ -1,29 +1,27 @@
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState, useEffect } from "react";
 
-import './Calculator.scss';
-import { incomesListArray } from '../../mockedData/incomesListArray';
-import { expensesListArray } from '../../mockedData/expensesListArray';
+import "./Calculator.scss";
+import { incomesListArray } from "../../mockedData/incomesListArray";
+import { expensesListArray } from "../../mockedData/expensesListArray";
 import {
   findAmountOfDeletingItem,
   findItemToDelete,
-  handleBudgetValueColor,
   initialBudgetValue,
   handleSnackBar
-} from '../../utils';
-import IncomesList from '../IncomesList';
-import ExpensesList from '../ExpensesList';
-import Form from '../Form/Form';
-import SnackBar from '../SnackBar/SnackBar';
+} from "../../utils";
+import IncomesList from "../IncomesList";
+import ExpensesList from "../ExpensesList";
+import Form from "../Form/Form";
+import SnackBar from "../SnackBar/SnackBar";
 
 const Calculator = () => {
   const [income, setIncome] = useState(incomesListArray);
   const [expense, setExpenses] = useState(expensesListArray);
   const [isOpen, setIsOpen] = useState(false);
   const [sumOfBudget, setSumOfBudget] = useState(initialBudgetValue(income, expense));
-  const budgetRef = useRef();
 
   const handleDeleteListItem = (id, typeOfItem) => {
-    if (typeOfItem === 'income') {
+    if (typeOfItem === "income") {
       const newIncomeList = findItemToDelete(id, income);
       const amountOfDeletedIncome = findAmountOfDeletingItem(id, income);
       setIncome(newIncomeList);
@@ -37,7 +35,6 @@ const Calculator = () => {
   };
 
   useEffect(() => {
-    handleBudgetValueColor(sumOfBudget, budgetRef);
     return () => {
       clearTimeout(handleSnackBar);
     };
@@ -50,7 +47,6 @@ const Calculator = () => {
         expense={expense}
         setExpenses={setExpenses}
         setIsOpen={setIsOpen}
-        budgetRef={budgetRef}
         sumOfBudget={sumOfBudget}
         setSumOfBudget={setSumOfBudget}
       />

@@ -1,7 +1,7 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import React from "react";
+import PropTypes from "prop-types";
 
-import './IncomesItem.scss';
+import "./IncomesItem.scss";
 
 const IncomesItem = ({ income, handleDeleteListItem }) => {
   const { id, name, amount, type, category } = income;

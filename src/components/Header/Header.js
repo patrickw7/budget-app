@@ -1,7 +1,7 @@
-import React from 'react';
-import propTypes from 'prop-types';
+import React from "react";
+import propTypes from "prop-types";
 
-import './Header.scss';
+import "./Header.scss";
 
 const Header = ({ children }) => {
   return (

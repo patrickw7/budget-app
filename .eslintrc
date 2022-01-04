@@ -12,7 +12,7 @@
   "plugins": ["react", "prettier"],
   "extends": ["eslint:recommended", "plugin:react/recommended", "plugin:prettier/recommended"],
   "rules": {
-    "prettier/prettier": "error",
+    "prettier/prettier": ["error", { "singleQuote": false }],
     "no-unused-vars": "warn",
     "react/display-name": "off"
   }

@@ -1,20 +1,20 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import React from "react";
+import PropTypes from "prop-types";
 
-import './Budget.scss';
+import "./Budget.scss";
 
-const Budget = React.forwardRef((props, budgetRef) => {
+const Budget = ({ sumOfBudget }) => {
   return (
     <div>
       <h2 className="budgetText">
-        My budget: <span ref={budgetRef}>{props.sumOfBudget}$</span>
+        My budget:{" "}
+        <span className={sumOfBudget >= 0 ? "budgetPlus" : "budgetMinus"}>{sumOfBudget}$</span>
       </h2>
     </div>
   );
-});
+};
 export default Budget;
 
 Budget.propTypes = {
-  sumOfBudget: PropTypes.number,
-  budgetRef: PropTypes.string
+  sumOfBudget: PropTypes.number
 };

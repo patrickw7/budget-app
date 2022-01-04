@@ -1,4 +1,4 @@
-import { budgetStateColor } from './constants';
+import { budgetStateColor } from "./constants";
 
 const handleBudgetValueColor = (sumOfBudget, budgetRef) => {
   if (sumOfBudget > 0) {

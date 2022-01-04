@@ -1,7 +1,7 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import React from "react";
+import PropTypes from "prop-types";
 
-import './SnackBar.scss';
+import "./SnackBar.scss";
 
 const SnackBar = ({ children }) => {
   return (

@@ -1,3 +1,3 @@
-import IncomesList from './IncomesList';
+import IncomesList from "./IncomesList";
 
 export default IncomesList;
