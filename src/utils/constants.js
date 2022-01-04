@@ -8,9 +8,3 @@ const category = [
   { name: "Other", id: "11d23521-cc31-421c-9de8-20b3f2109514" }
 ];
 export default category;
-
-export const budgetStateColor = {
-  plus: "#038003",
-  minus: "#e74c3c",
-  neutral: "#505050"
-};

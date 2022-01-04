@@ -6,7 +6,7 @@ import { expensesListArray } from "../../mockedData/expensesListArray";
 import {
   findAmountOfDeletingItem,
   findItemToDelete,
-  initialBudgetValue,
+  calculateBudget,
   handleSnackBar
 } from "../../utils";
 import IncomesList from "../IncomesList";
@@ -18,7 +18,7 @@ const Calculator = () => {
   const [income, setIncome] = useState(incomesListArray);
   const [expense, setExpenses] = useState(expensesListArray);
   const [isOpen, setIsOpen] = useState(false);
-  const [sumOfBudget, setSumOfBudget] = useState(initialBudgetValue(income, expense));
+  const [sumOfBudget, setSumOfBudget] = useState(calculateBudget(income, expense));
 
   const handleDeleteListItem = (id, typeOfItem) => {
     if (typeOfItem === "income") {

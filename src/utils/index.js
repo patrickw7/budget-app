@@ -1,5 +1,4 @@
-export { default as initialBudgetValue } from "./initialBudgetValue";
-export { default as handleBudgetValueColor } from "./handleBudgetValueColor";
+export { default as calculateBudget } from "./calculateBudget";
 export { default as findItemToDelete } from "./findItemToDelete";
 export { default as findAmountOfDeletingItem } from "./findAmountOfDeletingItem";
 export { default as category } from "./constants";
