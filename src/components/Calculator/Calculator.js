@@ -7,7 +7,8 @@ import {
   findAmountOfDeletingItem,
   findItemToDelete,
   calculateBudget,
-  handleSnackBar
+  handleSnackBar,
+  addNewItem
 } from "../../utils";
 import IncomesList from "../IncomesList";
 import ExpensesList from "../ExpensesList";
@@ -19,6 +20,23 @@ const Calculator = () => {
   const [expense, setExpenses] = useState(expensesListArray);
   const [isOpen, setIsOpen] = useState(false);
   const [sumOfBudget, setSumOfBudget] = useState(calculateBudget(income, expense));
+
+  const handleAddNewItem = (data) => {
+    const itemType = data.budgetItemType;
+    const amount = parseInt(data.amount, 10);
+    if (itemType === "income") {
+      const newIncome = addNewItem(data);
+      setIncome([...income, newIncome]);
+      setSumOfBudget(sumOfBudget + amount);
+      handleSnackBar(setIsOpen);
+      return;
+    }
+    const newExpense = addNewItem(data);
+    setExpenses([...expense, newExpense]);
+    setSumOfBudget(sumOfBudget + -amount);
+    handleSnackBar(setIsOpen);
+    return;
+  };
 
   const handleDeleteListItem = (id, typeOfItem) => {
     if (typeOfItem === "income") {
@@ -41,15 +59,7 @@ const Calculator = () => {
   }, [sumOfBudget]);
   return (
     <div>
-      <Form
-        income={income}
-        setIncome={setIncome}
-        expense={expense}
-        setExpenses={setExpenses}
-        setIsOpen={setIsOpen}
-        sumOfBudget={sumOfBudget}
-        setSumOfBudget={setSumOfBudget}
-      />
+      <Form handleAddNewItem={handleAddNewItem} sumOfBudget={sumOfBudget} />
       <div className="listsContainer">
         <IncomesList income={income} handleDeleteListItem={handleDeleteListItem} />
         <ExpensesList expense={expense} handleDeleteListItem={handleDeleteListItem} />

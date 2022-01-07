@@ -14,6 +14,7 @@
   "rules": {
     "prettier/prettier": ["error", { "singleQuote": false }],
     "no-unused-vars": "warn",
-    "react/display-name": "off"
+    "react/display-name": "off",
+    "no-debugger": "warn"
   }
 }
