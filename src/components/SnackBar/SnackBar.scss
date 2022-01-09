@@ -1,15 +1,15 @@
-@use '../../styles/variables.scss'as *;
+@use "../../styles/variables.scss" as *;
 
 .snackBar {
-display: flex;
-justify-content: space-around;
-align-items: center;
-background-color: $mainGreen;
-color: $themeSecondColor;
-font-weight: bold;
-position: absolute;
-width: 16rem;
-height: 3rem;
-left: calc(50% - 16rem/2);
-bottom: 15%;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  background-color: $mainGreen;
+  color: $themeSecondColor;
+  font-weight: bold;
+  position: absolute;
+  width: 16rem;
+  height: 3rem;
+  left: calc(50% - 16rem / 2);
+  bottom: 15%;
 }

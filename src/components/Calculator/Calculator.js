@@ -1,31 +1,45 @@
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState, useEffect } from "react";
 
-import './Calculator.scss';
-import { incomesListArray } from '../../mockedData/incomesListArray';
-import { expensesListArray } from '../../mockedData/expensesListArray';
+import "./Calculator.scss";
+import { incomesListArray } from "../../mockedData/incomesListArray";
+import { expensesListArray } from "../../mockedData/expensesListArray";
 import {
   findAmountOfDeletingItem,
   findItemToDelete,
-  handleBudgetValueColor,
-  initialBudgetValue,
+  calculateBudget,
   handleSnackBar,
-} from '../../utils';
-import IncomesList from '../IncomesList';
-import ExpensesList from '../ExpensesList';
-import Form from '../Form/Form';
-import SnackBar from '../SnackBar/SnackBar';
+  addNewItem
+} from "../../utils";
+import IncomesList from "../IncomesList";
+import ExpensesList from "../ExpensesList";
+import Form from "../Form/Form";
+import SnackBar from "../SnackBar/SnackBar";
 
 const Calculator = () => {
   const [income, setIncome] = useState(incomesListArray);
   const [expense, setExpenses] = useState(expensesListArray);
   const [isOpen, setIsOpen] = useState(false);
-  const [sumOfBudget, setSumOfBudget] = useState(
-    initialBudgetValue(income, expense)
-  );
-  const budgetRef = useRef();
+  const [sumOfBudget, setSumOfBudget] = useState(calculateBudget(income, expense));
+
+  const handleAddNewItem = (data) => {
+    const itemType = data.budgetItemType;
+    const amount = parseInt(data.amount, 10);
+    if (itemType === "income") {
+      const newIncome = addNewItem(data);
+      setIncome([...income, newIncome]);
+      setSumOfBudget(sumOfBudget + amount);
+      handleSnackBar(setIsOpen);
+      return;
+    }
+    const newExpense = addNewItem(data);
+    setExpenses([...expense, newExpense]);
+    setSumOfBudget(sumOfBudget + -amount);
+    handleSnackBar(setIsOpen);
+    return;
+  };
 
   const handleDeleteListItem = (id, typeOfItem) => {
-    if (typeOfItem === 'income') {
+    if (typeOfItem === "income") {
       const newIncomeList = findItemToDelete(id, income);
       const amountOfDeletedIncome = findAmountOfDeletingItem(id, income);
       setIncome(newIncomeList);
@@ -39,35 +53,18 @@ const Calculator = () => {
   };
 
   useEffect(() => {
-    handleBudgetValueColor(sumOfBudget, budgetRef);
     return () => {
       clearTimeout(handleSnackBar);
     };
-  },[sumOfBudget]);
+  }, [sumOfBudget]);
   return (
     <div>
-   <Form
-   income={income}
-   setIncome={setIncome}
-   expense={expense}
-   setExpenses={setExpenses}
-   setIsOpen={setIsOpen}
-   budgetRef={budgetRef}
-   sumOfBudget={sumOfBudget}
-   setSumOfBudget={setSumOfBudget}
-   />
-      <div className='listsContainer'>
-        <IncomesList
-          income={income}
-          handleDeleteListItem={handleDeleteListItem}
-        />
-        <ExpensesList
-          expense={expense}
-          handleDeleteListItem={handleDeleteListItem}
-        />
+      <Form handleAddNewItem={handleAddNewItem} sumOfBudget={sumOfBudget} />
+      <div className="listsContainer">
+        <IncomesList income={income} handleDeleteListItem={handleDeleteListItem} />
+        <ExpensesList expense={expense} handleDeleteListItem={handleDeleteListItem} />
       </div>
-      {isOpen &&
-        <SnackBar>The item has been added !</SnackBar>}
+      {isOpen && <SnackBar>The item has been added !</SnackBar>}
     </div>
   );
 };

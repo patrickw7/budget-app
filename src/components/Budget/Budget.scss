@@ -1,5 +1,12 @@
-@use '../../styles/variables.scss' as *;
+@use "../../styles/variables.scss" as *;
 
 .budgetText {
   font-family: $fontHeader;
+}
+.budgetPlus {
+  color: #038003;
+}
+
+.budgetMinus {
+  color: #e74c3c;
 }

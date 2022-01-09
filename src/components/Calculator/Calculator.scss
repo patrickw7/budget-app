@@ -1,4 +1,4 @@
-@use '../../styles/variables.scss' as *;
+@use "../../styles/variables.scss" as *;
 
 form {
   display: flex;
@@ -6,27 +6,27 @@ form {
   justify-content: center;
 
   & div {
-    margin: $small-margin;
+    margin: $smallMargin;
   }
 
   & .radioLabel {
-    font-family: 'Rammetto One', cursive;
+    font-family: "Rammetto One", cursive;
   }
 
   & .budgetInput {
-    padding: $small-padding;
+    padding: $smallPadding;
     border: 0;
-    border-radius: $border-size;
-    margin: $small-margin $medium-margin;
+    border-radius: $borderSize;
+    margin: $smallMargin $mediumMargin;
     width: 12vw;
   }
 
   & .categoryList {
     align-self: center;
-    padding: $small-padding;
+    padding: $smallPadding;
     border: none;
-    border-radius: $border-size;
-    margin: $small-margin 0;
+    border-radius: $borderSize;
+    margin: $smallMargin 0;
   }
 
   & .warning {
@@ -40,7 +40,7 @@ form {
 .listsContainer {
   display: flex;
   justify-content: center;
-  align-items: center;
+  align-items: flex-start;
   width: 100%;
   min-height: 50%;
 }
@@ -57,13 +57,12 @@ form {
     }
   }
   .listsContainer {
-  flex-direction: column;
+    flex-direction: column;
   }
 }
 
-
 @media (max-width: 1024px) {
   .listsContainer {
-  flex-direction: column;
+    flex-direction: column;
   }
 }

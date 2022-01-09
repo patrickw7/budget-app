@@ -1,4 +1,4 @@
-@use './variables.scss' as *;
+@use "./variables.scss" as *;
 
 @mixin list {
   display: flex;
@@ -8,9 +8,9 @@
   min-height: 70vh;
   width: 35%;
   background-color: $themeSecondColor;
-  margin: $big-margin;
-  border-radius: $border-size;
-  padding: 0 $large-padding $big-padding;
+  margin: $bigMargin;
+  border-radius: $borderSize;
+  padding: 0 $largePadding $bigPadding;
 }
 
 @mixin item {
@@ -20,8 +20,8 @@
   justify-content: flex-start;
   border: 1px solid $themeFirstColor;
   min-width: 97%;
-  margin: $small-margin;
-  border-radius: $border-size;
+  margin: $smallMargin;
+  border-radius: $borderSize;
 }
 
 @mixin dangerBtn {
@@ -30,11 +30,11 @@
   height: 2.5em;
   cursor: pointer;
   border: none;
-  border-radius: $border-size;
+  border-radius: $borderSize;
   text-align: center;
   color: $themeSecondColor;
   background-color: $mainRed;
-  margin: $medium-margin;
+  margin: $mediumMargin;
 }
 
 @mixin headerList {

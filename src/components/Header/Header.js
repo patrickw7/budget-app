@@ -1,7 +1,7 @@
-import React from 'react';
-import propTypes from 'prop-types';
+import React from "react";
+import propTypes from "prop-types";
 
-import './Header.scss';
+import "./Header.scss";
 
 const Header = ({ children }) => {
   return (
@@ -10,8 +10,8 @@ const Header = ({ children }) => {
     </div>
   );
 };
+export default Header;
 
 Header.propTypes = {
-  children: propTypes.string,
+  children: propTypes.string
 };
-export default Header;
