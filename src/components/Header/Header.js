@@ -10,7 +10,7 @@ const Header = ({ children }) => {
     </div>
   );
 };
-export default Header;
+export default React.memo(Header);
 
 Header.propTypes = {
   children: propTypes.string
