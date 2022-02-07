@@ -1,13 +1,13 @@
-import React from "react";
+import React, { createContext, useState } from "react";
 import PropTypes from "prop-types";
-import { useState } from "react";
+
 import { incomesListArray } from "../../mockedData/incomesListArray";
 import { expensesListArray } from "../../mockedData/expensesListArray";
 import { calculateBudget } from "..";
 
-export const CalculatorContext = React.createContext();
+export const CalculatorContext = createContext();
 
-const CalculatorProvider = ({ children }) => {
+export const CalculatorProvider = ({ children }) => {
   const [income, setIncome] = useState(incomesListArray);
   const [expense, setExpenses] = useState(expensesListArray);
   const [sumOfBudget, setSumOfBudget] = useState(calculateBudget(income, expense));
@@ -24,13 +24,11 @@ const CalculatorProvider = ({ children }) => {
         setSumOfBudget,
         isOpen,
         setIsOpen
-      }}
-    >
+      }}>
       {children}
     </CalculatorContext.Provider>
   );
 };
-export default CalculatorProvider;
 
 CalculatorProvider.propTypes = {
   children: PropTypes.any

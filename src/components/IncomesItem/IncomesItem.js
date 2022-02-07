@@ -5,7 +5,7 @@ import "./IncomesItem.scss";
 
 const IncomesItem = ({ income, handleDeleteListItem }) => {
   const { id, name, amount, type, category } = income;
-  const handleDeleteItem = () => handleDeleteListItem(id, type);
+  const handleDeleteItem = React.useCallback(() => handleDeleteListItem(id, type));
 
   return (
     <div className="incomesItem" key={id}>

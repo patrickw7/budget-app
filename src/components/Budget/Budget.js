@@ -1,9 +1,11 @@
-import React from "react";
+import React, { useContext } from "react";
 import PropTypes from "prop-types";
 
 import "./Budget.scss";
+import { CalculatorContext } from "../../utils/context/CalculatorProvider";
 
-const Budget = ({ sumOfBudget }) => {
+const Budget = () => {
+  const { sumOfBudget } = useContext(CalculatorContext);
   return (
     <div>
       <h2 className="budgetText">

@@ -1,10 +1,12 @@
-import React from "react";
+import React, { useContext } from "react";
 import PropTypes from "prop-types";
 
 import "./IncomesList.scss";
 import IncomesItem from "../IncomesItem";
+import { CalculatorContext } from "../../utils/context/CalculatorProvider";
 
-const IncomesList = ({ income, handleDeleteListItem }) => {
+const IncomesList = ({ handleDeleteListItem }) => {
+  const { income } = useContext(CalculatorContext);
   return (
     <div className="incomesList">
       <h2>Incomes</h2>

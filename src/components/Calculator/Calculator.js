@@ -63,10 +63,10 @@ const Calculator = () => {
   }, [sumOfBudget]);
   return (
     <>
-      <Form handleAddNewItem={handleAddNewItem} sumOfBudget={sumOfBudget} />
+      <Form handleAddNewItem={handleAddNewItem} />
       <div className="listsContainer">
-        <IncomesList income={income} handleDeleteListItem={handleDeleteListItem} />
-        <ExpensesList expense={expense} handleDeleteListItem={handleDeleteListItem} />
+        <IncomesList handleDeleteListItem={handleDeleteListItem} />
+        <ExpensesList handleDeleteListItem={handleDeleteListItem} />
       </div>
       {isOpen && <SnackBar>The item has been added !</SnackBar>}
     </>
